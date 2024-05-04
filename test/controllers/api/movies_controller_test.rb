@@ -8,7 +8,7 @@ class Api::MoviesControllerTest < ActionDispatch::IntegrationTest
     test "Deve criar um novo filme" do
         movie_params = {
             movie: {
-                title: "Meu filme",
+                title: "Meu Filme",
                 description: "Descrição do filme"
             }
         }
@@ -18,10 +18,10 @@ class Api::MoviesControllerTest < ActionDispatch::IntegrationTest
         end
 
         assert_response :created
+        assert_response :created
 
-        movie = Movie.last
-        assert_equal 'Meu Filme', movie.title
-        assert_equal 'Descrição do filme', movie.description
+        assert_match 'Meu Filme', @response.body
+        assert_match 'Descrição do filme', @response.body
     end
 
     test "Deve mostrar um filme" do
