@@ -1,5 +1,5 @@
 class Api::MovieController < ApplicationController
     def index
-        render json: { message: 'Olá, mundo!' }
+        render json: { "message": 'Olá, mundo!' }
     end
 end
