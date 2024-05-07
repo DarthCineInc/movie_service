@@ -1,5 +1,7 @@
 class Api::MoviesController < ApplicationController
     def index
+        movies = Movie.all.map { |movie| movie_json(movie) }
+        render json: movies.to_json
     end
 
     def show
@@ -23,6 +25,10 @@ class Api::MoviesController < ApplicationController
     end
 
     def destroy
+        movie = Movie.find(params[:id])
+        movie.destroy
+
+        head :no_content
     end
 
     private
