@@ -14,6 +14,8 @@ class Api::MoviesController < ApplicationController
     def create
         movie = Movie.new(movie_create_params)
 
+        BunnyClient.push(movie_json(movie).inspect)
+
         if movie.save
             render json: movie_json(movie), status: :created
         else

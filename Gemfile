@@ -37,6 +37,7 @@ gem "bootsnap", require: false
 
 # darthcine gems
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'bunny'
 
 # Image Upload
 gem 'carrierwave'
