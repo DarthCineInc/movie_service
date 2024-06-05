@@ -1,3 +1,5 @@
+require 'json'
+
 class Api::MoviesController < ApplicationController
     def index
         movies = Movie.all.map { |movie| movie_json(movie) }
@@ -14,9 +16,9 @@ class Api::MoviesController < ApplicationController
     def create
         movie = Movie.new(movie_create_params)
 
-        BunnyClient.push(movie_json(movie).inspect)
-
+        
         if movie.save
+            BunnyClient.push(movie_json(movie).to_json)
             render json: movie_json(movie), status: :created
         else
             render json: { errors: movie.errors.full_messages }, status: :unprocessable_entity
